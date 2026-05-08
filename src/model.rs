@@ -289,19 +289,31 @@ pub struct HeroStats {
 }
 
 // 升级编码
+#[allow(dead_code)]
 pub const WAR_HORN_UPGRADE_CODE: &str = "Hero_Upgrade_Horn";
+#[allow(dead_code)]
 pub const GRAIL_UPGRADE_CODE: &str = "Hero_Upgrade_Grail";
+#[allow(dead_code)]
 pub const BOMB_UPGRADE_CODE: &str = "Hero_Upgrade_Bomb";
+#[allow(dead_code)]
 pub const MINE_UPGRADE_CODE: &str = "Hero_Upgrade_Mine";
+#[allow(dead_code)]
 pub const PHILOSOPHERS_STONE_UPGRADE_CODE: &str = "Hero_Upgrade_PhilosophersStone";
+#[allow(dead_code)]
 pub const SIZE_UPGRADE_CODE: &str = "Hero_Upgrade_Size";
+#[allow(dead_code)]
 pub const WARHAMMER_UPGRADE_CODE: &str = "Hero_Upgrade_Warhammer";
+#[allow(dead_code)]
 pub const CORNUCOPIA_UPGRADE_CODE: &str = "Hero_Upgrade_Cornucopia";
 
 // 特性编码：掷斧手、迅捷精通、追猎、荆棘
+#[allow(dead_code)]
 pub const TRAIT_AXE_THROWER_CODE: &str = "Hero_Trait_AxeThrower";
+#[allow(dead_code)]
 pub const TRAIT_CHEAPER_CLASS_CODE: &str = "Hero_Trait_CheaperClass";
+#[allow(dead_code)]
 pub const TRAIT_REGENERATIVE_CODE: &str = "Hero_Trait_Regenerative";
+#[allow(dead_code)]
 pub const TRAIT_THORN_CODE: &str = "Hero_Trait_Thorn";
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]

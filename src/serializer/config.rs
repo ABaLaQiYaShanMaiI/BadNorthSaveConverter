@@ -7,6 +7,7 @@ use std::fmt;
 
 /// 序列化模式
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[allow(dead_code)]
 pub enum SerializerMode {
     /// 严格模式：完全遵循二进制格式，任何变化都拒绝
     /// 所有记录的大小必须与原始二进制完全相同
@@ -35,6 +36,7 @@ impl fmt::Display for SerializerMode {
 
 /// 序列化器配置
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 pub struct SerializerConfig {
     /// 序列化模式
     pub mode: SerializerMode,
@@ -64,6 +66,7 @@ impl Default for SerializerConfig {
 impl SerializerConfig {
     /// 为 modifier 场景创建默认配置
     /// 推荐用于接受 modifier 修改的 JSON 的序列化
+    #[allow(dead_code)]
     pub fn default_for_modifier() -> Self {
         SerializerConfig {
             mode: SerializerMode::FlexibleStrings,
@@ -75,6 +78,7 @@ impl SerializerConfig {
 
     /// 创建严格模式配置
     /// 用于精确复制和测试，要求完全相同的二进制
+    #[allow(dead_code)]
     pub fn strict() -> Self {
         SerializerConfig {
             mode: SerializerMode::Strict,
@@ -86,6 +90,7 @@ impl SerializerConfig {
 
     /// 创建详细诊断模式配置
     /// 输出所有变化和诊断信息
+    #[allow(dead_code)]
     pub fn verbose() -> Self {
         SerializerConfig {
             mode: SerializerMode::FlexibleStrings,
@@ -96,6 +101,7 @@ impl SerializerConfig {
     }
 
     /// 创建适应模式配置
+    #[allow(dead_code)]
     pub fn adaptive() -> Self {
         SerializerConfig {
             mode: SerializerMode::Adaptive,
@@ -106,24 +112,28 @@ impl SerializerConfig {
     }
 
     /// 设置序列化模式
+    #[allow(dead_code)]
     pub fn with_mode(mut self, mode: SerializerMode) -> Self {
         self.mode = mode;
         self
     }
 
     /// 启用/禁用详细诊断
+    #[allow(dead_code)]
     pub fn with_verbose_diagnostics(mut self, verbose: bool) -> Self {
         self.verbose_diagnostics = verbose;
         self
     }
 
     /// 启用/禁用缺失元数据允许
+    #[allow(dead_code)]
     pub fn with_allow_missing_metadata(mut self, allow: bool) -> Self {
         self.allow_missing_metadata = allow;
         self
     }
 
     /// 启用/禁用记录摘要
+    #[allow(dead_code)]
     pub fn with_log_record_summary(mut self, log: bool) -> Self {
         self.log_record_summary = log;
         self

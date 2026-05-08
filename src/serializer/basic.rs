@@ -4,6 +4,7 @@ use byteorder::{LittleEndian, WriteBytesExt};
 
 use crate::records::*;
 
+#[allow(dead_code)]
 pub fn serialize(rec: &DeserializedRecord) -> Vec<u8> {
     serialize_checked(rec).unwrap_or_else(|error| panic!("{}", error))
 }

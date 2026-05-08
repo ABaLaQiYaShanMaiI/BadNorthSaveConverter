@@ -6,6 +6,7 @@ use crate::records::*;
 use super::config::{SerializerConfig, SerializerMode};
 use super::string_patcher::StringPatchInfo;
 
+#[allow(dead_code)]
 pub struct EnhancedSerializer {
     output: Vec<u8>,
     todo: VecDeque<i32>,
@@ -17,11 +18,13 @@ pub struct EnhancedSerializer {
 }
 
 /// 使用默认配置进行增强序列化
+#[allow(dead_code)]
 pub fn serialize_enhanced(rec: &DeserializedRecord) -> Result<Vec<u8>, String> {
     serialize_enhanced_with_config(rec, SerializerConfig::default())
 }
 
 /// 使用自定义配置进行增强序列化
+#[allow(dead_code)]
 pub fn serialize_enhanced_with_config(
     rec: &DeserializedRecord,
     config: SerializerConfig,
@@ -31,6 +34,7 @@ pub fn serialize_enhanced_with_config(
 }
 
 impl EnhancedSerializer {
+    #[allow(dead_code)]
     fn new(config: SerializerConfig) -> Self {
         Self {
             output: Vec::with_capacity(0x1000),
@@ -43,6 +47,7 @@ impl EnhancedSerializer {
         }
     }
 
+    #[allow(dead_code)]
     fn add_todo(&mut self, id: i32) {
         if !self.done.contains(&id) {
             self.done.insert(id);
@@ -50,6 +55,7 @@ impl EnhancedSerializer {
         }
     }
 
+    #[allow(dead_code)]
     fn serialize(mut self, rec: &DeserializedRecord) -> Result<Vec<u8>, String> {
         self.write_u8(0);
         self.write_i32(rec.root_id);
@@ -111,6 +117,7 @@ impl EnhancedSerializer {
         Ok(self.output)
     }
 
+    #[allow(dead_code)]
     fn write_record_by_id(&mut self, recs: &DeserializedRecord, id: i32) -> Result<(), String> {
         if self.emitted.contains(&id) {
             return Ok(());
@@ -126,6 +133,7 @@ impl EnhancedSerializer {
         Ok(())
     }
 
+    #[allow(dead_code)]
     fn original_top_level_order(&self, recs: &DeserializedRecord) -> Option<Vec<i32>> {
         if recs.record_metadata.is_empty() {
             return None;
@@ -146,6 +154,7 @@ impl EnhancedSerializer {
         )
     }
 
+    #[allow(dead_code)]
     fn is_nested_record(&self, recs: &DeserializedRecord, record_id: i32) -> bool {
         let Some(record_meta) = recs.record_metadata(record_id) else {
             return false;
@@ -157,6 +166,7 @@ impl EnhancedSerializer {
         })
     }
 
+    #[allow(dead_code)]
     fn should_inline_member_record(
         &self,
         recs: &DeserializedRecord,
@@ -177,6 +187,7 @@ impl EnhancedSerializer {
             && child_meta.end_offset <= parent_meta.end_offset
     }
 
+    #[allow(dead_code)]
     fn write_record(
         &mut self,
         recs: &DeserializedRecord,
@@ -267,6 +278,7 @@ impl EnhancedSerializer {
         Ok(())
     }
 
+    #[allow(dead_code)]
     fn ensure_record_type(
         &self,
         id: i32,
@@ -284,6 +296,7 @@ impl EnhancedSerializer {
         Ok(())
     }
 
+    #[allow(dead_code)]
     fn resolve_class_record_type(
         &self,
         recs: &DeserializedRecord,
@@ -307,10 +320,12 @@ impl EnhancedSerializer {
         }
     }
 
+    #[allow(dead_code)]
     fn class_record_writes_library_id(&self, record_type: u8) -> bool {
         record_type == 5
     }
 
+    #[allow(dead_code)]
     fn write_class_type(&mut self, id: i32, class_type: &ClassType) {
         self.write_i32(id);
         self.write_string(&class_type.name);
@@ -329,6 +344,7 @@ impl EnhancedSerializer {
         }
     }
 
+    #[allow(dead_code)]
     fn write_member_type(&mut self, typ: &MemberType) {
         match typ {
             MemberType::Primitive(_) => self.write_u8(0),
@@ -342,6 +358,7 @@ impl EnhancedSerializer {
         }
     }
 
+    #[allow(dead_code)]
     fn write_member_type_additional_info(&mut self, typ: &MemberType) {
         match typ {
             MemberType::Primitive(t) => self.write_primitive_type(t),
@@ -355,6 +372,7 @@ impl EnhancedSerializer {
         }
     }
 
+    #[allow(dead_code)]
     fn write_member(
         &mut self,
         recs: &DeserializedRecord,
@@ -405,6 +423,7 @@ impl EnhancedSerializer {
         Ok(())
     }
 
+    #[allow(dead_code)]
     fn write_primitive_type(&mut self, typ: &PrimitiveType) {
         self.write_u8(match typ {
             PrimitiveType::Boolean => 1,
@@ -427,6 +446,7 @@ impl EnhancedSerializer {
         });
     }
 
+    #[allow(dead_code)]
     fn write_primitive(&mut self, val: &Primitive) {
         match val {
             Primitive::Boolean(val) => self.write_u8(*val as u8),
@@ -456,6 +476,7 @@ impl EnhancedSerializer {
         }
     }
 
+    #[allow(dead_code)]
     fn write_string(&mut self, val: &str) {
         let bytes = val.as_bytes();
         let mut length = bytes.len();
@@ -472,6 +493,7 @@ impl EnhancedSerializer {
         self.output.extend(bytes);
     }
 
+    #[allow(dead_code)]
     fn validate_record_size(
         &mut self,
         recs: &DeserializedRecord,
@@ -555,6 +577,7 @@ impl EnhancedSerializer {
         Ok(())
     }
 
+    #[allow(dead_code)]
     fn record_member_breakdown(
         &self,
         class: &Class,
@@ -608,6 +631,7 @@ impl EnhancedSerializer {
         Ok(diagnostics)
     }
 
+    #[allow(dead_code)]
     fn member_serialized_size(member: &Member, member_type: &MemberType) -> Result<usize, String> {
         if let MemberType::Primitive(_) = member_type {
             if let Member::Primitive(value) = member {
@@ -629,6 +653,7 @@ impl EnhancedSerializer {
         })
     }
 
+    #[allow(dead_code)]
     fn primitive_serialized_size(value: &Primitive) -> usize {
         match value {
             Primitive::Boolean(_) | Primitive::Byte(_) | Primitive::Int8(_) => 1,
@@ -644,6 +669,7 @@ impl EnhancedSerializer {
         }
     }
 
+    #[allow(dead_code)]
     fn encoded_string_size(value: &str) -> usize {
         let length = value.len();
         let prefix_len = if length <= 0x7F {
@@ -660,10 +686,12 @@ impl EnhancedSerializer {
         prefix_len + length
     }
 
+    #[allow(dead_code)]
     fn write_u8(&mut self, i: u8) {
         self.output.write_u8(i).unwrap();
     }
 
+    #[allow(dead_code)]
     fn write_i32(&mut self, i: i32) {
         self.output.write_i32::<LittleEndian>(i).unwrap();
     }

@@ -15,10 +15,12 @@ impl DeserializedRecord {
         &self.class_types[class.class_type_id]
     }
 
+    #[allow(dead_code)]
     pub fn class_member<'a, 'b>(&'a self, class: &'a Class, name: &'b str) -> &'a Member {
         &class.members[self.class_member_index(class, name)]
     }
 
+    #[allow(dead_code)]
     pub fn class_member_mut<'a, 'b>(
         &'a mut self,
         class: &'a mut Class,
@@ -28,6 +30,7 @@ impl DeserializedRecord {
         &mut class.members[index]
     }
 
+    #[allow(dead_code)]
     pub fn patch_class_member(
         &mut self,
         class_record_id: i32,
@@ -62,11 +65,13 @@ impl DeserializedRecord {
         Ok(())
     }
 
+    #[allow(dead_code)]
     pub fn class_member_deref<'a, 'b>(&'a self, class: &'a Class, name: &'b str) -> &'a Record {
         let id = self.class_member(class, name).as_reference();
         &self.records[id]
     }
 
+    #[allow(dead_code)]
     pub fn class_member_index<'a, 'b>(&'a self, class: &'a Class, name: &'b str) -> usize {
         let class_type = self.class_type(class);
         class_type
@@ -149,6 +154,7 @@ pub enum Record {
 }
 
 impl Record {
+    #[allow(dead_code)]
     pub const fn as_class(&self) -> &Class {
         if let Self::Class(class) = self {
             class
@@ -157,6 +163,7 @@ impl Record {
         }
     }
 
+    #[allow(dead_code)]
     pub fn as_binary_array(&self) -> &[Member] {
         if let Self::BinaryArray(_, array) = self {
             array
@@ -165,6 +172,7 @@ impl Record {
         }
     }
 
+    #[allow(dead_code)]
     pub fn as_class_mut(&mut self) -> &mut Class {
         if let Self::Class(class) = self {
             class
@@ -173,6 +181,7 @@ impl Record {
         }
     }
 
+    #[allow(dead_code)]
     pub fn as_binary_array_mut(&mut self) -> &mut Vec<Member> {
         if let Self::BinaryArray(_, array) = self {
             array
@@ -181,6 +190,7 @@ impl Record {
         }
     }
 
+    #[allow(dead_code)]
     pub fn as_string(&self) -> &str {
         if let Self::String(s) = self {
             s
@@ -226,6 +236,7 @@ pub enum Member {
 }
 
 impl Member {
+    #[allow(dead_code)]
     pub const fn as_reference(&self) -> &i32 {
         if let Self::Reference(id) = self {
             id
@@ -234,6 +245,7 @@ impl Member {
         }
     }
 
+    #[allow(dead_code)]
     pub const fn as_i32(&self) -> i32 {
         if let Self::Primitive(Primitive::Int32(val)) = self {
             *val

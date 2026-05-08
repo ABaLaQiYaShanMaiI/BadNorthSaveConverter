@@ -1,6 +1,7 @@
 use std::fmt;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[allow(dead_code)]
 pub enum StringChangeType {
     /// 字符串变短了
     Shortened,
@@ -14,6 +15,7 @@ pub enum StringChangeType {
 
 /// 字符串补丁信息
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 pub struct StringPatchInfo {
     /// 记录 ID
     pub record_id: i32,
@@ -29,6 +31,7 @@ pub struct StringPatchInfo {
 
 impl StringPatchInfo {
     /// 创建新的字符串补丁信息
+    #[allow(dead_code)]
     pub fn new(record_id: i32, old_value: String, new_value: String) -> Self {
         let old_size = calculate_string_record_size(&old_value);
         let new_size = calculate_string_record_size(&new_value);
@@ -54,6 +57,7 @@ impl StringPatchInfo {
     }
 
     /// 生成诊断消息
+    #[allow(dead_code)]
     pub fn diagnostic_message(&self) -> String {
         let old_size = calculate_string_record_size(&self.old_value);
         let new_size = calculate_string_record_size(&self.new_value);
@@ -107,6 +111,7 @@ impl fmt::Display for StringPatchInfo {
 
 /// 计算字符串在记录中的编码大小
 /// 包括 7-bit 编码的长度前缀
+#[allow(dead_code)]
 pub fn calculate_string_record_size(string_value: &str) -> usize {
     let length = string_value.len();
     let prefix_len = match length {
@@ -120,6 +125,7 @@ pub fn calculate_string_record_size(string_value: &str) -> usize {
 }
 
 /// 计算字符串变化的字节差异
+#[allow(dead_code)]
 pub fn calculate_size_delta(old_str: &str, new_str: &str) -> isize {
     let old_size = calculate_string_record_size(old_str);
     let new_size = calculate_string_record_size(new_str);
@@ -127,6 +133,7 @@ pub fn calculate_size_delta(old_str: &str, new_str: &str) -> isize {
 }
 
 /// 检测字符串变化类型
+#[allow(dead_code)]
 pub fn detect_change_type(old_str: &str, new_str: &str) -> StringChangeType {
     if old_str == new_str {
         StringChangeType::Unchanged
