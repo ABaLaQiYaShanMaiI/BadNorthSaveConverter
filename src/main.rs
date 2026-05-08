@@ -3,15 +3,13 @@ use std::path::{Path, PathBuf};
 
 use clap::{Parser, Subcommand};
 
-mod json_decoder;
-mod json_encoder;
+mod json;
 mod model;
 mod parser;
 mod records;
 mod serializer;
 
-use json_decoder::JsonDecoder;
-use json_encoder::JsonEncoder;
+use json::{JsonDecoder, JsonEncoder};
 use parser::parse;
 use serializer::serialize_checked;
 
