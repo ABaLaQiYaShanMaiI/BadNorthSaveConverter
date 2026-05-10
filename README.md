@@ -2,6 +2,14 @@
 
 [English](#english) | [中文](#中文)
 
+<div align="center">
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Rust](https://img.shields.io/badge/Rust-1.56%2B-blue.svg)](https://www.rust-lang.org/)
+[![GitHub](https://img.shields.io/github/stars/ABaLaQiYaShanMaiI/BadNorthSaveConverter?style=social)](https://github.com/ABaLaQiYaShanMaiI/BadNorthSaveConverter)
+
+</div>
+
 ## 中文
 
 ### 项目介绍
@@ -343,11 +351,11 @@ GUI 界面读取存档
 
 ### 许可证
 
-根据项目具体许可证要求填写（如 MIT、Apache 2.0 等）
+本项目基于 **MIT License** 开源，详见 [LICENSE](./LICENSE) 文件。
 
 ### 作者
 
-**ABaLaQiYaShanMai**
+**ABaLaQiYaShanMaiI**
 
 ### 相关项目
 
@@ -697,11 +705,11 @@ Issues and Pull Requests are welcome!
 
 ### License
 
-[Specify the license according to your project requirements, e.g., MIT, Apache 2.0, etc.]
+This project is open-sourced under the **MIT License**. See the [LICENSE](./LICENSE) file for details.
 
 ### Author
 
-**ABaLaQiYaShanMai**
+**ABaLaQiYaShanMaiI**
 
 ### Related Projects
 
